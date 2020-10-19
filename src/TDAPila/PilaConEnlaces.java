@@ -28,7 +28,7 @@ public class PilaConEnlaces<E> implements Stack<E> {
 
 	@Override
 	public void push(E element) {
-		Nodo<E> newHead = new Nodo(element, head);
+		Nodo<E> newHead = new Nodo<E>(element, head);
 		head = newHead;
 		tamanio++;
 	}
