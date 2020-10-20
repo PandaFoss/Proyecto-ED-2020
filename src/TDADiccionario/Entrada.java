@@ -2,7 +2,7 @@ package TDADiccionario;
 
 /**
  * Modela la interfaz Entry a mediante Entradas.
- * @author Joaquin Garcia Diotto
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
  *
  * @param <K> Tipo de dato utilizado por las claves de la clase.
  * @param <V> Tipo de dato utilizado por los valores de la clase.

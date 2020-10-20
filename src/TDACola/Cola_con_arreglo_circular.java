@@ -4,7 +4,7 @@ import TDACola.Queue;
 
 /**
  * Implementa la interfaz Queue y la modela mediante la estructura de datos Cola con arreglo circular.
- * @author Joaquin Garcia Diotto
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
  *
  * @param <E> Tipo de dato a almacenar en la Cola.
  */
@@ -24,8 +24,8 @@ public class Cola_con_arreglo_circular<E> implements Queue<E>{
 	}
 	
 	/**
-	 * Crea una nueva cola vacia de tamaño n.
-	 * @param n Tamaño de la cola deseado.
+	 * Crea una nueva cola vacia de tamaï¿½o n.
+	 * @param n Tamaï¿½o de la cola deseado.
 	 */
 	@SuppressWarnings("unchecked")
 	public Cola_con_arreglo_circular(int n) {
@@ -81,7 +81,7 @@ public class Cola_con_arreglo_circular<E> implements Queue<E>{
 	}
 	
 	/**
-	 * Metodo privado para aumentar el tamaño de la Cola.
+	 * Metodo privado para aumentar el tamaï¿½o de la Cola.
 	 */
 	private void aumentarSize() {
 		@SuppressWarnings("unchecked")

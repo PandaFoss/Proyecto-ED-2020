@@ -11,7 +11,6 @@ import TDALista.ListaDE;
 import TDALista.Position;
 import TDALista.PositionList;
 
-
 public class Deque<E> implements java.util.Deque<E> {
 	
 	PositionList<E> lista;
@@ -40,7 +39,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	public <T> T[] toArray(T[] a) { //Hay que cambiar T a E????? Porque sino no tiene sentido. Que pasaria si la lista fuera <Integer> y el arreglo Boolean entonces?
 		return null;
 	}
-
+	
 	@Override
 	public boolean containsAll(Collection<?> c) { //Metodos turbios
 		boolean tiene = true;
