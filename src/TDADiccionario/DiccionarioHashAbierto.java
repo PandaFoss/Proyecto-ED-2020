@@ -3,6 +3,13 @@ import java.util.Iterator;
 
 import TDALista.*;
 
+/**
+ * Implementa la interfaz Dictionary y la modela mediante la estructura de datos Hash Abierto.
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ *
+ * @param <K> Tipo de dato de las claves mantenidas por el diccionario.
+ * @param <V> Tipo de dato de los valores contenidos en el diccionario.
+ */
 public class DiccionarioHashAbierto<K,V> implements Dictionary<K,V>{
 	protected PositionList<Entrada<K,V>>[] DHA;
 	protected int n;
@@ -17,6 +24,12 @@ public class DiccionarioHashAbierto<K,V> implements Dictionary<K,V>{
 			DHA[i] = new ListaDE<Entrada<K,V>>();
 		}
 	}
+	
+	/**
+	 * Devuelve el código hash de la clave {@code key}.
+	 * @param key clave a la cual se le aplica la función hash.
+	 * @return Número correspondiente al aplicar la función hash.
+	 */
 	protected int hash(K key) {
 		return Math.abs(key.hashCode()%N);
 	}
@@ -63,6 +76,10 @@ public class DiccionarioHashAbierto<K,V> implements Dictionary<K,V>{
 		n++;
 		return e;
 	}
+	
+	/**
+	 * Redimensiona el arreglo de {@code PositionList<Entrada<K,V>>} que llama al método.
+	 */
 	private void redimensionar() {
 		PositionList<Entrada<K,V>>[] DHAviejo = DHA;
 		DHA = inicializarArreglo(N=nextPrimo(N*2));
@@ -80,6 +97,12 @@ public class DiccionarioHashAbierto<K,V> implements Dictionary<K,V>{
 			}
 		}
 	}
+	
+	/**
+	 * Inicializa un arreglo de {@code PositionList<Entrada<K,V>>} de tamaño {@code cant}.
+	 * @param cant tamaño del arreglo a inicializar.
+	 * @return Arreglo de {@code PositionList<Entrada<K,V>>} de tamaño {@code cant} vacío.
+	 */
 	private PositionList<Entrada<K,V>>[] inicializarArreglo(int cant){
 		 @SuppressWarnings("unchecked")
 		PositionList<Entrada<K,V>>[] nuevoArreglo = (PositionList<Entrada<K,V>>[]) new PositionList[cant];
@@ -88,6 +111,12 @@ public class DiccionarioHashAbierto<K,V> implements Dictionary<K,V>{
 		 }
 		 return nuevoArreglo;
 	}
+	
+	/**
+	 * Retorna el siguiente número primo a {@code n}.
+	 * @param n número a evaluar.
+	 * @return Número primo inmediatamente posterior al ingresado como parámetro.
+	 */
 	private int nextPrimo(Integer n) {
 		boolean encontre = false;
 		while(!encontre) {
@@ -96,6 +125,12 @@ public class DiccionarioHashAbierto<K,V> implements Dictionary<K,V>{
 		}
 		return n;
 	}
+	
+	/**
+	 * Chequea si {@code n} es un número primo y retorna el valor booleano respectivo.
+	 * @param n número a evaluar.
+	 * @return {@code true} si el número es primo, {@code false} en caso contrario.
+	 */
 	private boolean esPrimo(int n) {
 		boolean es = true; int i, k = i = 2; int f = (int) Math.sqrt(n);
 		while(es && i<=f) {
@@ -141,20 +176,4 @@ public class DiccionarioHashAbierto<K,V> implements Dictionary<K,V>{
 		}
 		return entradas;
 	}
-	public void convertir_a_mapeo() {
-		for(PositionList<Entrada<K,V>> l : DHA) {
-			if(!l.isEmpty()) {
-				try {
-					Position<Entrada<K,V>> entrada = l.first();
-					while(entrada != l.last()) {
-						if(l.next(entrada).element().getKey()==entrada.element().getKey() && l.next(entrada).element().getValue()!=entrada.element().getValue())
-							l.remove(l.next(entrada));
-						else if (l.next(entrada).element().getKey()!=entrada.element().getKey())
-							entrada = l.next(entrada);
-					}
-				} catch(EmptyListException | InvalidPositionException | BoundaryViolationException e) {e.printStackTrace();}
-			}
-		}
-	}
-	
 }

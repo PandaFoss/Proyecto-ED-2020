@@ -2,7 +2,7 @@ package TDADiccionario;
 
 /**
  * Modela la excepcion en caso de que la Clave utilizada no sea valida.
- * @author Joaquin Garcia Diotto
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
  *
  */
 public class InvalidKeyException extends Exception{
