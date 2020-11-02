@@ -11,7 +11,11 @@ public class Transaccion<M, D> implements Transaction<M, D> {
 	}
 	
 	public Transaccion(M m) {
-		monto = m;
+		this(m,null);
+	}
+	
+	public Transaccion() {
+		this(null, null);
 	}
 
 	@Override

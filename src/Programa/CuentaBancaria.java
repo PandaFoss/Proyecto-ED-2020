@@ -1,5 +1,9 @@
 package Programa;
 
+import TDAColaCP.ColaCPconLista;
+import TDAColaCP.EmptyPriorityQueueException;
+import TDAColaCP.InvalidKeyException;
+import TDAColaCP.PriorityQueue;
 import TDADeque.Deque;
 
 public class CuentaBancaria {
@@ -35,7 +39,34 @@ public class CuentaBancaria {
 	 * @return La Transaccion más costosa.
 	 */
 	public Transaccion<Float, String> transaccionMasCostosa() {
-		return null;
+		Transaction<Float, String> masCostosa = new Transaccion<Float, String>();
+		PriorityQueue<Integer, Transaction<Float, String>> masCostosaCCP = new ColaCPconLista<Integer, Transaction<Float, String>>();
+		float montoMayor = 0;
+		int prioridadActualMin = transacciones.size();
+		int prioridadActualMax = transacciones.size() + 1;
+		
+		try {
+			
+			// Paso cada transaccion a la CCP procurando que la de menor
+			// prioridad sea la del monto más alto.
+			for (Transaccion<Float,String> t: transacciones) {
+				if (t.getMonto() > montoMayor) {
+					masCostosaCCP.insert(prioridadActualMin, t);
+					prioridadActualMin--;
+					montoMayor = t.getMonto();
+				} else {
+					masCostosaCCP.insert(prioridadActualMax, t);
+					prioridadActualMax++;
+				}
+			}
+		
+			masCostosa = masCostosaCCP.min().getValue();
+			
+		} catch (EmptyPriorityQueueException | InvalidKeyException e) {
+			e.printStackTrace();
+		}
+		
+		return (Transaccion<Float, String>) masCostosa;
 	}
 	
 	/**
