@@ -1,16 +1,16 @@
 package Programa;
 
-public class Transaccion<M, D> {
+public class Transaccion {
 	
-	private M monto;
-	private D descripcion;
+	private Float monto;
+	private String descripcion;
 	
-	public Transaccion(M m, D d) {
+	public Transaccion(Float m, String d) {
 		monto = m;
 		descripcion = d;
 	}
 	
-	public Transaccion(M m) {
+	public Transaccion(Float m) {
 		this(m,null);
 	}
 	
@@ -18,19 +18,19 @@ public class Transaccion<M, D> {
 		this(null, null);
 	}
 
-	public M getMonto() {
+	public Float getMonto() {
 		return monto;
 	}
 
-	public D getDescripcion() {
+	public String getDescripcion() {
 		return descripcion;
 	}
 	
-	public void setMonto(M m) {
+	public void setMonto(Float m) {
 		monto = m;
 	}
 	
-	public void setDescripcion(D d) {
+	public void setDescripcion(String d) {
 		descripcion = d;
 	}
 
