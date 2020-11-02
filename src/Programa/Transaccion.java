@@ -1,6 +1,6 @@
 package Programa;
 
-public class Transaccion<M, D> implements Transaction<M, D> {
+public class Transaccion<M, D> {
 	
 	private M monto;
 	private D descripcion;
@@ -18,12 +18,10 @@ public class Transaccion<M, D> implements Transaction<M, D> {
 		this(null, null);
 	}
 
-	@Override
 	public M getMonto() {
 		return monto;
 	}
 
-	@Override
 	public D getDescripcion() {
 		return descripcion;
 	}
