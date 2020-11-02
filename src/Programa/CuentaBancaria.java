@@ -39,8 +39,8 @@ public class CuentaBancaria {
 	 * @return La Transaccion más costosa.
 	 */
 	public Transaccion<Float, String> transaccionMasCostosa() {
-		Transaction<Float, String> masCostosa = new Transaccion<Float, String>();
-		PriorityQueue<Integer, Transaction<Float, String>> masCostosaCCP = new ColaCPconLista<Integer, Transaction<Float, String>>();
+		Transaccion<Float, String> masCostosa = new Transaccion<Float, String>();
+		PriorityQueue<Integer, Transaccion<Float, String>> masCostosaCCP = new ColaCPconLista<Integer, Transaccion<Float, String>>();
 		float montoMayor = 0;
 		int prioridadActualMin = transacciones.size();
 		int prioridadActualMax = transacciones.size() + 1;
