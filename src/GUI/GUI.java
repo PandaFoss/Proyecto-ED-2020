@@ -10,10 +10,9 @@ public class GUI {
 	private JFrame frame;
 	private JTable table;
 	private DefaultTableModel tablaModel;
-	private JScrollPane panelTabla;
 
 	/**
-	 * Launch the application.
+	 * Launch the application. (Este main es temporal!)
 	 */
 	public static void main(String[] args) {
 		startGUI();
@@ -36,7 +35,7 @@ public class GUI {
 		
 		crearLabelMostrar();
 		
-		//crearPanelTabla();
+		crearPanelTabla();
 		
 		crearBotonesDeSeleccion();
 		
@@ -58,6 +57,10 @@ public class GUI {
 		});
 	}
 	
+	/**
+	 * Métodos que permiten crear e inicializar los componentes de la GUI
+	 */
+	
 	private void crearBotonesDeSeleccion() {
 		// Botones para seleccionar las operaciones
 		JRadioButton rdbtnTodas = new JRadioButton("Todas");
@@ -74,7 +77,7 @@ public class GUI {
 		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		// Agrupo botones
-		ButtonGroup botones = new ButtonGroup();    
+		ButtonGroup botones = new ButtonGroup();
 		botones.add(rdbtnTodas);
 		botones.add(rdbtnMsHistrica);
 		botones.add(rdbtnMsReciente);
@@ -97,29 +100,43 @@ public class GUI {
 	}
 	
 	private void crearPanelTabla() {
-	    panelTabla = new JScrollPane();
-	    
-	    frame.getContentPane().add(panelTabla, BorderLayout.CENTER);
-	      tablaModel = new Tablamodel();        
-	      table = new JTable();
-	      panelTabla.setViewportView(table);              
-	      table.setModel(tablaModel); 
-	      table.setAutoCreateRowSorter(true);      
-	      
-	      // centrar todos los datos de la tabla
+		tablaModel = new TablaModel();
+		table = new JTable();
+		table.setModel(tablaModel);
+		JScrollPane scrollPane = new JScrollPane(table);
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 1;
+		frame.getContentPane().add(scrollPane, gbc_scrollPane);
+		
+		  // Alinear datos de la tabla
 	      DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 	      centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-	      table.setDefaultRenderer(String.class, centerRenderer);  
-	      table.setDefaultRenderer(Integer.class, centerRenderer);  
+	      table.setDefaultRenderer(Float.class, centerRenderer);  
 	      
-	      // seteo tamaño de cada columna
+	      DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+	      leftRenderer.setHorizontalAlignment(JLabel.LEFT);
+	      table.setDefaultRenderer(String.class, leftRenderer);  
+	      
+	      // Setear dimensiones
 	      table.getColumnModel().getColumn(0).setPreferredWidth(30);
 	      table.getColumnModel().getColumn(1).setPreferredWidth(300);
-	      table.getColumnModel().getColumn(2).setPreferredWidth(200);
+	      
+	      agregarFila(123.0F,"Hola Don Pepito");
+	}
+	
+	private void agregarFila(Float monto, String descripcion) {
+	    int fila = table.getRowCount();
+	      ((DefaultTableModel) table.getModel()).setRowCount(fila+1); // creo nueva fila
+	      table.setValueAt(monto, fila, 0);
+	      table.setValueAt(descripcion, fila, 1);
 	  }
 	
 	private void crearLabelMostrar() {
 		JLabel lblMostrar = new JLabel("Mostrar");
+		lblMostrar.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		GridBagConstraints gbc_lblMostrar = new GridBagConstraints();
 		gbc_lblMostrar.insets = new Insets(0, 0, 5, 0);
 		gbc_lblMostrar.gridx = 3;
@@ -175,26 +192,8 @@ public class GUI {
 		panelSaldo.add(lblSaldo);
 	}
 	
-	final class Tablamodel extends DefaultTableModel{
-	    private Class[] types;
-	      private boolean[] canEdit;
-	      
-	      Tablamodel(){
-	        super(new String[][] {},
-	            new String[]{"Monto", "Descripción"});
-	        types = new Class[] {java.lang.Float.class,
-	                             java.lang.String.class                              
-	        };
-	        canEdit= new boolean[] { false, false};
-	      };               
-	                   
-	      public Class getColumnClass(int columnIndex){
-	         return types[columnIndex];
-	      }
-	      
-	      public boolean isCellEditable(int rowIndex, int columnIndex){
-	         return canEdit[columnIndex];
-	      }                                     
-	 };
+	/**
+	 * Métodos oyentes
+	 */
 	 
 }
