@@ -2,6 +2,7 @@ package Programa;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Iterator;
 
 import TDAColaCP.ColaCPconLista;
 import TDAColaCP.EmptyPriorityQueueException;
@@ -98,5 +99,14 @@ public class CuentaBancaria {
 		// Redondeamos el saldo a dos decimales
         BigDecimal bd = new BigDecimal(saldo).setScale(2, RoundingMode.HALF_UP);
 		return bd.floatValue();
+	}
+	
+	public Iterable<Transaccion> transacciones() {
+		Iterator<Transaccion> it = transacciones.iterator();
+		PositionList<Transaccion> lista = new ListaDE<Transaccion>();
+		while (it.hasNext()) {
+			lista.addLast(it.next());
+		}
+		return lista;
 	}
 }

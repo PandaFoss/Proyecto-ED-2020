@@ -4,7 +4,6 @@ import javax.swing.*;
 import Programa.Programa;
 
 public class Main {
-	//El método main es temporal (o no?)
 	public static void main(String [] args) {
 		// Muestra un popup para ingresar la clave de acceso y la almacena.
 		String claveDeAcceso = JOptionPane.showInputDialog("Clave de acceso:");
