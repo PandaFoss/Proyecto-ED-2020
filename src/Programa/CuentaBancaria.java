@@ -1,5 +1,8 @@
 package Programa;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import TDAColaCP.ColaCPconLista;
 import TDAColaCP.EmptyPriorityQueueException;
 import TDAColaCP.InvalidKeyException;
@@ -85,5 +88,15 @@ public class CuentaBancaria {
 	public void realizarTransaccion (Transaccion t) {
 		saldo += t.getMonto();
 		transacciones.add(t);
+	}
+	
+	/**
+	 * Getter que retorna el saldo de la cuenta.
+	 * @return saldo de la cuenta bancaria.
+	 */
+	public float getSaldo() {
+		// Redondeamos el saldo a dos decimales
+        BigDecimal bd = new BigDecimal(saldo).setScale(2, RoundingMode.HALF_UP);
+		return bd.floatValue();
 	}
 }

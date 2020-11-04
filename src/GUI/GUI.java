@@ -15,6 +15,7 @@ public class GUI {
 
 	private JFrame frame;
 	private JTable table;
+	private JLabel lblSaldo;
 	private DefaultTableModel tablaModel;
 	private static CuentaBancaria miCuenta;
 
@@ -190,6 +191,7 @@ public class GUI {
 		btnNuevaTransaccin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnNuevaTransaccinListener();
+				saldoListener();
 			}
 		});
 		panelBotonNew.add(btnNuevaTransaccin);
@@ -204,7 +206,7 @@ public class GUI {
 		gbc_panelSaldo.gridy = 2;
 		frame.getContentPane().add(panelSaldo, gbc_panelSaldo);
 
-		JLabel lblSaldo = new JLabel("Saldo $");
+		lblSaldo = new JLabel("Saldo $ "+miCuenta.getSaldo());
 		panelSaldo.add(lblSaldo);
 	}
 	
@@ -238,4 +240,7 @@ public class GUI {
 		}
 	}
 	 
+	private void saldoListener() {
+		lblSaldo.setText("Saldo $ "+miCuenta.getSaldo());
+	}
 }
