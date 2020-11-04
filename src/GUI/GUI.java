@@ -20,7 +20,7 @@ public class GUI {
 	private static CuentaBancaria miCuenta;
 
 	/**
-	 * Launch the application. (Este main es temporal!)
+	 * Launch the application. (Este main es temporal! Ver Main.java)
 	 */
 	public static void main(String[] args) {
 		startGUI();
@@ -75,21 +75,50 @@ public class GUI {
 		JRadioButton rdbtnTodas = new JRadioButton("Todas");
 		rdbtnTodas.setSelected(true);
 		rdbtnTodas.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnTodas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnTodasListener();
+			}
+		});
 		
 		JRadioButton rdbtnMsHistrica = new JRadioButton("Más histórica");
 		rdbtnMsHistrica.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnMsHistrica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnMsHistricaListener();
+			}
+		});
 		
 		JRadioButton rdbtnMsReciente = new JRadioButton("Más reciente");
 		rdbtnMsReciente.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnMsReciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnMsRecienteListener();
+			}
+		});
+		
+		JRadioButton rdbtnMsCostosa = new JRadioButton("Más costosa");
+		rdbtnMsCostosa.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnMsCostosa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnMsCostosaListener();
+			}
+		});
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Monto...");
 		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
-		
+		rdbtnNewRadioButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnNewRadioButtonListener();
+			}
+		});
+				
 		// Agrupo botones
 		ButtonGroup botones = new ButtonGroup();
 		botones.add(rdbtnTodas);
 		botones.add(rdbtnMsHistrica);
 		botones.add(rdbtnMsReciente);
+		botones.add(rdbtnMsCostosa);
 		botones.add(rdbtnNewRadioButton);
 		
 		// Creo una VerticalBox para posicionar los botones verticalmente
@@ -97,6 +126,7 @@ public class GUI {
 		verticalBox.add(rdbtnTodas);
 		verticalBox.add(rdbtnMsHistrica);
 		verticalBox.add(rdbtnMsReciente);
+		verticalBox.add(rdbtnMsCostosa);
 		verticalBox.add(rdbtnNewRadioButton);
 		
 		// Muestro los botones
@@ -113,6 +143,7 @@ public class GUI {
 		table = new JTable();
 		table.setModel(tablaModel);
 		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
@@ -145,6 +176,10 @@ public class GUI {
 	    
 	    // Añadir entrada en Deque
 	    miCuenta.realizarTransaccion(nuevaTransaccion);
+	}
+	
+	private void limpiarTabla(DefaultTableModel tm) {
+		tm.setRowCount(0);
 	}
 	
 	private void crearLabelMostrar() {
@@ -242,5 +277,45 @@ public class GUI {
 	 
 	private void saldoListener() {
 		lblSaldo.setText("Saldo $ "+miCuenta.getSaldo());
+	}
+	
+	private void rdbtnTodasListener() {
+		limpiarTabla(tablaModel);
+		for (Transaccion t: miCuenta.transacciones()) {
+			agregarFila(t.getMonto(),t.getDescripcion());
+		}
+	}
+	
+	private void rdbtnMsHistricaListener() {
+		limpiarTabla(tablaModel);
+		agregarFila(miCuenta.transaccionMasHistorica().getMonto(),miCuenta.transaccionMasHistorica().getDescripcion());
+	}
+	
+	private void rdbtnMsRecienteListener() {
+		limpiarTabla(tablaModel);
+		agregarFila(miCuenta.transaccionMasReciente().getMonto(), miCuenta.transaccionMasReciente().getDescripcion());
+	}
+	
+	private void rdbtnMsCostosaListener() {
+		limpiarTabla(tablaModel);
+		agregarFila(miCuenta.transaccionMasCostosa().getMonto(), miCuenta.transaccionMasCostosa().getDescripcion());
+	}
+	
+	private void rdbtnNewRadioButtonListener() {
+		String montoInput = JOptionPane.showInputDialog("Monto a buscar: ");
+		float monto = 0.00F;
+		
+		if (!montoInput.isBlank()) {
+			try {
+				monto = Float.parseFloat(montoInput);
+				limpiarTabla(tablaModel);
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null,"Asegúrese de ingresar un monto válido.","¡Atención!", JOptionPane.WARNING_MESSAGE);
+			}
+		}
+		
+		for (Transaccion t: miCuenta.transaccionesIgualMonto(monto)) {
+			agregarFila(t.getMonto(), t.getDescripcion());
+		}
 	}
 }
