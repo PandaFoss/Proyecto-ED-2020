@@ -1,15 +1,22 @@
 package GUI;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+
+import Programa.CuentaBancaria;
+import Programa.Transaccion;
 
 public class GUI {
 
 	private JFrame frame;
 	private JTable table;
 	private DefaultTableModel tablaModel;
+	private static CuentaBancaria miCuenta;
 
 	/**
 	 * Launch the application. (Este main es temporal!)
@@ -45,6 +52,7 @@ public class GUI {
 	}
 	
 	public static void startGUI() {
+		miCuenta = new CuentaBancaria();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -123,16 +131,20 @@ public class GUI {
 	      // Setear dimensiones
 	      table.getColumnModel().getColumn(0).setPreferredWidth(30);
 	      table.getColumnModel().getColumn(1).setPreferredWidth(300);
-	      
-	      agregarFila(123.0F,"Hola Don Pepito");
 	}
 	
 	private void agregarFila(Float monto, String descripcion) {
 	    int fila = table.getRowCount();
-	      ((DefaultTableModel) table.getModel()).setRowCount(fila+1); // creo nueva fila
-	      table.setValueAt(monto, fila, 0);
-	      table.setValueAt(descripcion, fila, 1);
-	  }
+	    Transaccion nuevaTransaccion = new Transaccion(monto, descripcion);
+	    
+		// Crear fila en tabla (GUI)
+	    ((DefaultTableModel) table.getModel()).setRowCount(fila+1); // Creo nueva fila
+	    table.setValueAt(monto, fila, 0);
+	    table.setValueAt(descripcion, fila, 1);
+	    
+	    // Añadir entrada en Deque
+	    miCuenta.realizarTransaccion(nuevaTransaccion);
+	}
 	
 	private void crearLabelMostrar() {
 		JLabel lblMostrar = new JLabel("Mostrar");
@@ -174,8 +186,12 @@ public class GUI {
 		gbc_panelBotonNew.gridx = 3;
 		gbc_panelBotonNew.gridy = 2;
 		frame.getContentPane().add(panelBotonNew, gbc_panelBotonNew);
-		
 		JButton btnNuevaTransaccin = new JButton("Nueva transacción");
+		btnNuevaTransaccin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNuevaTransaccinListener();
+			}
+		});
 		panelBotonNew.add(btnNuevaTransaccin);
 	}
 	
@@ -195,5 +211,31 @@ public class GUI {
 	/**
 	 * Métodos oyentes
 	 */
+	
+	private void btnNuevaTransaccinListener() {
+		String montoInput = JOptionPane.showInputDialog("Monto de la operación: ");
+		float monto = 0.00F;
+		boolean flag = false;
+		String descripcion = null;
+
+		if (!montoInput.isBlank()) {
+			try {
+				monto = Float.parseFloat(montoInput);
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null,"Asegúrese de ingresar un número válido.","Error", JOptionPane.ERROR_MESSAGE);
+				flag = true;
+			}
+
+			if (!flag) {
+				descripcion = JOptionPane.showInputDialog("Descripción: ");
+				if (descripcion.isBlank()) {
+					descripcion = "<Sin descripción>";
+				}
+				agregarFila(monto,descripcion);
+			}
+		} else {
+			JOptionPane.showMessageDialog(null,"El campo 'monto' es obligatorio.","Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
 	 
 }
