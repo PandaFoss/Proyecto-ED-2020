@@ -171,7 +171,7 @@ public class Deque<E> implements java.util.Deque<E> {
 		E elemento = null;
 		if(!lista.isEmpty())
 			try {
-				elemento = lista.first().element();
+				elemento = lista.last().element();
 			} catch (EmptyListException e) {}
 		return elemento;
 	}
