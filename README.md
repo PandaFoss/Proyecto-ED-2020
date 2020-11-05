@@ -6,3 +6,4 @@ ___
 ### Minutas del proyecto
 
 - Si bien la clave de acceso pretende funcionar mediante el formato AXA'A', donde A es el apellido del usuario, X es la letra 'X' y A' es el apellido pero invertido, el software implementado no corrobora que A sea efectivamente un apellido. Aún así, la eficacia es la misma.
+- Tengo dudas con respecto a la implementacion de algunos metodos de Deque, de todas formas no son metodos relevantes para el funcionamiento del programa del proyecto.
