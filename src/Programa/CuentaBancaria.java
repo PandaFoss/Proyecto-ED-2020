@@ -32,7 +32,7 @@ public class CuentaBancaria {
 	 * @return La Transaccion más reciente.
 	 */
 	public Transaccion transaccionMasReciente() {
-		return transacciones.getLast();
+		return transacciones.peekLast();
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public class CuentaBancaria {
 	 * @return La Transaccion más histórica.
 	 */
 	public Transaccion transaccionMasHistorica() {
-		return transacciones.getFirst();
+		return transacciones.peekFirst();
 	}
 	
 	/**
@@ -48,14 +48,15 @@ public class CuentaBancaria {
 	 * @return La Transaccion más costosa.
 	 */
 	public Transaccion transaccionMasCostosa() {
-		Transaccion masCostosa = new Transaccion();
+		Transaccion masCostosa = null;
 		PriorityQueue<Float, Transaccion> masCostosaCCP = new ColaCPconLista<Float, Transaccion>();
 		try {
 			//Inserto todas las transacciones en la cola. Su prioridad (o monto) pasa a ser negativa asi las de mayor monto quedan primeras.
 			for (Transaccion t: transacciones) {
 				masCostosaCCP.insert(-t.getMonto(),t);
 			}
-			masCostosa = masCostosaCCP.min().getValue();
+			if(!masCostosaCCP.isEmpty())
+				masCostosa = masCostosaCCP.min().getValue();
 		} catch (EmptyPriorityQueueException | InvalidKeyException e) {
 			e.printStackTrace();
 		}

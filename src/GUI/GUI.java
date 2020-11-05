@@ -3,35 +3,47 @@ package GUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import Programa.CuentaBancaria;
 import Programa.Transaccion;
+import Programa.Programa;
 
-public class GUI {
+public class GUI extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private JTable table;
 	private JLabel lblSaldo;
 	private DefaultTableModel tablaModel;
 	private static CuentaBancaria miCuenta;
-
-	/**
-	 * Launch the application. (Este main es temporal! Ver Main.java)
-	 */
-	public static void main(String[] args) {
-		startGUI();
-	}
+	private JRadioButton rdbtnTodas;
+	private JRadioButton rdbtnMsHistrica;
+	private JRadioButton rdbtnMsReciente;
+	private JRadioButton rdbtnMsCostosa;
+	private JRadioButton rdbtnNewRadioButton;
+	private JButton btnNuevaTransaccin;
+	
 
 	/**
 	 * Create the application.
 	 */
 	public GUI() {
+		miCuenta = new CuentaBancaria();
 		initialize();
+		frame.setVisible(true);
+		String claveDeAcceso = JOptionPane.showInputDialog("Clave de acceso:");
+		if(claveDeAcceso==null || !Programa.check_password(claveDeAcceso)){
+			JOptionPane.showMessageDialog(null,"La clave de acceso tiene un formato incorrecto.","Error", JOptionPane.ERROR_MESSAGE);
+			bloquearApp();
+		}
 	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -51,28 +63,13 @@ public class GUI {
 		
 		crearBtnNuevaTransaccion();
 	}
-	
-	public static void startGUI() {
-		miCuenta = new CuentaBancaria();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUI window = new GUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	/**
 	 * Métodos que permiten crear e inicializar los componentes de la GUI
 	 */
 	
 	private void crearBotonesDeSeleccion() {
 		// Botones para seleccionar las operaciones
-		JRadioButton rdbtnTodas = new JRadioButton("Todas");
+		rdbtnTodas = new JRadioButton("Todas");
 		rdbtnTodas.setSelected(true);
 		rdbtnTodas.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnTodas.addActionListener(new ActionListener() {
@@ -81,7 +78,7 @@ public class GUI {
 			}
 		});
 		
-		JRadioButton rdbtnMsHistrica = new JRadioButton("Más histórica");
+		rdbtnMsHistrica = new JRadioButton("Más histórica");
 		rdbtnMsHistrica.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnMsHistrica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -89,7 +86,7 @@ public class GUI {
 			}
 		});
 		
-		JRadioButton rdbtnMsReciente = new JRadioButton("Más reciente");
+		rdbtnMsReciente = new JRadioButton("Más reciente");
 		rdbtnMsReciente.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnMsReciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -97,7 +94,7 @@ public class GUI {
 			}
 		});
 		
-		JRadioButton rdbtnMsCostosa = new JRadioButton("Más costosa");
+		rdbtnMsCostosa = new JRadioButton("Más costosa");
 		rdbtnMsCostosa.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnMsCostosa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -105,7 +102,7 @@ public class GUI {
 			}
 		});
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Monto...");
+		rdbtnNewRadioButton = new JRadioButton("Monto...");
 		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnNewRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -142,6 +139,7 @@ public class GUI {
 		tablaModel = new TablaModel();
 		table = new JTable();
 		table.setModel(tablaModel);
+		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -167,7 +165,7 @@ public class GUI {
 	
 	private void agregarFila(Float monto, String descripcion) {
 	    int fila = table.getRowCount();
-	    Transaccion nuevaTransaccion = new Transaccion(monto, descripcion);
+	    //Transaccion nuevaTransaccion = new Transaccion(monto, descripcion);
 	    
 		// Crear fila en tabla (GUI)
 	    ((DefaultTableModel) table.getModel()).setRowCount(fila+1); // Creo nueva fila
@@ -175,11 +173,20 @@ public class GUI {
 	    table.setValueAt(descripcion, fila, 1);
 	    
 	    // Añadir entrada en Deque
-	    miCuenta.realizarTransaccion(nuevaTransaccion);
+	    //miCuenta.realizarTransaccion(nuevaTransaccion);
 	}
 	
 	private void limpiarTabla(DefaultTableModel tm) {
 		tm.setRowCount(0);
+	}
+	
+	private void bloquearApp() {
+		rdbtnTodas.setEnabled(false);
+		rdbtnMsCostosa.setEnabled(false);
+		rdbtnMsHistrica.setEnabled(false);
+		rdbtnMsReciente.setEnabled(false);
+		rdbtnNewRadioButton.setEnabled(false);
+		btnNuevaTransaccin.setEnabled(false);
 	}
 	
 	private void crearLabelMostrar() {
@@ -222,7 +229,7 @@ public class GUI {
 		gbc_panelBotonNew.gridx = 3;
 		gbc_panelBotonNew.gridy = 2;
 		frame.getContentPane().add(panelBotonNew, gbc_panelBotonNew);
-		JButton btnNuevaTransaccin = new JButton("Nueva transacción");
+		btnNuevaTransaccin = new JButton("Nueva transacción");
 		btnNuevaTransaccin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnNuevaTransaccinListener();
@@ -250,12 +257,13 @@ public class GUI {
 	 */
 	
 	private void btnNuevaTransaccinListener() {
+		rdbtnTodasListener();
 		String montoInput = JOptionPane.showInputDialog("Monto de la operación: ");
 		float monto = 0.00F;
 		boolean flag = false;
 		String descripcion = null;
 
-		if (!montoInput.isBlank()) {
+		if (montoInput != null && !montoInput.isBlank()) {
 			try {
 				monto = Float.parseFloat(montoInput);
 			} catch (NumberFormatException e) {
@@ -265,10 +273,11 @@ public class GUI {
 
 			if (!flag) {
 				descripcion = JOptionPane.showInputDialog("Descripción: ");
-				if (descripcion.isBlank()) {
+				if (descripcion==null || descripcion.isBlank()) {
 					descripcion = "<Sin descripción>";
 				}
 				agregarFila(monto,descripcion);
+				miCuenta.realizarTransaccion(new Transaccion(monto,descripcion));
 			}
 		} else {
 			JOptionPane.showMessageDialog(null,"El campo 'monto' es obligatorio.","Error", JOptionPane.ERROR_MESSAGE);
@@ -288,24 +297,30 @@ public class GUI {
 	
 	private void rdbtnMsHistricaListener() {
 		limpiarTabla(tablaModel);
-		agregarFila(miCuenta.transaccionMasHistorica().getMonto(),miCuenta.transaccionMasHistorica().getDescripcion());
+		Transaccion t = miCuenta.transaccionMasHistorica();
+		if(t!=null)
+			agregarFila(t.getMonto(),t.getDescripcion());
 	}
 	
 	private void rdbtnMsRecienteListener() {
 		limpiarTabla(tablaModel);
-		agregarFila(miCuenta.transaccionMasReciente().getMonto(), miCuenta.transaccionMasReciente().getDescripcion());
+		Transaccion t = miCuenta.transaccionMasReciente();
+		if(t!=null)
+			agregarFila(t.getMonto(), t.getDescripcion());
 	}
 	
 	private void rdbtnMsCostosaListener() {
 		limpiarTabla(tablaModel);
-		agregarFila(miCuenta.transaccionMasCostosa().getMonto(), miCuenta.transaccionMasCostosa().getDescripcion());
+		Transaccion t = miCuenta.transaccionMasCostosa();
+		if(t!=null)
+			agregarFila(t.getMonto(), t.getDescripcion());
 	}
 	
 	private void rdbtnNewRadioButtonListener() {
+		rdbtnTodasListener();
 		String montoInput = JOptionPane.showInputDialog("Monto a buscar: ");
 		float monto = 0.00F;
-		
-		if (!montoInput.isBlank()) {
+		if (montoInput!=null && !montoInput.isBlank()) {
 			try {
 				monto = Float.parseFloat(montoInput);
 				limpiarTabla(tablaModel);
