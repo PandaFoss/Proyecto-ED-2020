@@ -11,13 +11,13 @@ public class ColaCPconHeap<K extends Comparable<K>,V> implements PriorityQueue<K
 	
 	@SuppressWarnings("unchecked")
 	public ColaCPconHeap(Comparator<K> compa) {
-		elems = (Entrada<K,V>[]) new Entrada[100000];
+		elems = (Entrada<K,V>[]) new Entrada[10000];
 		size = 0;
 		comp = compa;
 	}
 	@SuppressWarnings("unchecked")
 	public ColaCPconHeap() {
-		elems = (Entrada<K,V>[]) new Entrada[100000];
+		elems = (Entrada<K,V>[]) new Entrada[10000];
 		size = 0;
 		comp = new DefaultComparator<K>();
 	}
@@ -45,6 +45,8 @@ public class ColaCPconHeap<K extends Comparable<K>,V> implements PriorityQueue<K
 		Entrada<K,V> elemActual, elemPadre;
 		boolean seguir = true;
 		size++;
+		if(size==elems.length)	
+			expandir();
 		elems[size] = entrada;
 		int i = size;
 		while(i>1 && seguir) {
@@ -104,5 +106,14 @@ public class ColaCPconHeap<K extends Comparable<K>,V> implements PriorityQueue<K
 		}
 		return entrada;
 	}
-
+	/**
+	 * Metodo privado que expande el tamaño de la cola.
+	 */
+	private void expandir() {
+		@SuppressWarnings("unchecked")
+		Entrada<K,V>[] nuevo = (Entrada<K,V>[]) new Entrada[elems.length+10000];
+		for(int i = 0; i<elems.length; i++) 
+			nuevo[i] = elems[i];
+		elems = nuevo;
+	}
 }
