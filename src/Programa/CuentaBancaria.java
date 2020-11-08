@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Iterator;
 
-import TDAColaCP.ColaCPconLista;
+import TDAColaCP.ColaCPconHeap;
 import TDAColaCP.EmptyPriorityQueueException;
 import TDAColaCP.InvalidKeyException;
 import TDAColaCP.PriorityQueue;
@@ -49,7 +49,7 @@ public class CuentaBancaria {
 	 */
 	public Transaccion transaccionMasCostosa() {
 		Transaccion masCostosa = null;
-		PriorityQueue<Float, Transaccion> masCostosaCCP = new ColaCPconLista<Float, Transaccion>();
+		PriorityQueue<Float, Transaccion> masCostosaCCP = new ColaCPconHeap<Float, Transaccion>();
 		try {
 			//Inserto todas las transacciones en la cola. Su prioridad (o monto) pasa a ser negativa asi las de mayor monto quedan primeras.
 			for (Transaccion t: transacciones) {
@@ -101,7 +101,10 @@ public class CuentaBancaria {
         BigDecimal bd = new BigDecimal(saldo).setScale(2, RoundingMode.HALF_UP);
 		return bd.floatValue();
 	}
-	
+	/**
+	 * Devuelve las transacciones de la cuenta.
+	 * @return Transacciones de la cuenta.
+	 */
 	public Iterable<Transaccion> transacciones() {
 		Iterator<Transaccion> it = transacciones.iterator();
 		PositionList<Transaccion> lista = new ListaDE<Transaccion>();
