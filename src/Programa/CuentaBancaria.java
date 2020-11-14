@@ -15,6 +15,10 @@ import TDADiccionario.Entry;
 import TDALista.ListaDE;
 import TDALista.PositionList;
 
+/**
+ * Modela la clase CuentaBancaria 
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ */
 public class CuentaBancaria {
 	protected float saldo;
 	protected Deque<Transaccion> transacciones;

@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import TDALista.BoundaryViolationException;
 import TDALista.EmptyListException;
 import TDALista.InvalidPositionException;
+import TDALista.BoundaryViolationException;
 import TDALista.ListaDE;
 import TDALista.Position;
 import TDALista.PositionList;

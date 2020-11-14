@@ -11,11 +11,12 @@ import Programa.CuentaBancaria;
 import Programa.Transaccion;
 import Programa.Programa;
 
+/**
+ * Implementa la clase GUI la cual modela la interfaz gráfica
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ */
 public class GUI extends JFrame{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private JTable table;
@@ -31,7 +32,7 @@ public class GUI extends JFrame{
 	
 
 	/**
-	 * Create the application.
+	 * Constructor de la clase GUI.
 	 */
 	public GUI() {
 		miCuenta = new CuentaBancaria();
@@ -46,7 +47,7 @@ public class GUI extends JFrame{
 	
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializa el contenido de la interfaz gráfica.
 	 */
 	private void initialize() {
 		crearFrame();
@@ -67,6 +68,9 @@ public class GUI extends JFrame{
 	 * Métodos que permiten crear e inicializar los componentes de la GUI
 	 */
 	
+	/**
+	 * Crea los Radio Buttons que aplican los filtros a la tabla
+	 */
 	private void crearBotonesDeSeleccion() {
 		// Botones para seleccionar las operaciones
 		rdbtnTodas = new JRadioButton("Todas");
@@ -135,6 +139,9 @@ public class GUI extends JFrame{
 		frame.getContentPane().add(verticalBox, gbc_verticalBox);
 	}
 	
+	/**
+	 * Crea el panel que aloja a la tabla
+	 */
 	private void crearPanelTabla() {
 		tablaModel = new TablaModel();
 		table = new JTable();
@@ -163,23 +170,31 @@ public class GUI extends JFrame{
 	      table.getColumnModel().getColumn(1).setPreferredWidth(300);
 	}
 	
+	/**
+	 * Añade una nueva fila en la tabla
+	 * @param monto Monto de la transacción a ingresar en la tabla
+	 * @param descripcion Descripción de la transacción a ingresar en la tabla
+	 */
 	private void agregarFila(Float monto, String descripcion) {
 	    int fila = table.getRowCount();
-	    //Transaccion nuevaTransaccion = new Transaccion(monto, descripcion);
 	    
 		// Crear fila en tabla (GUI)
 	    ((DefaultTableModel) table.getModel()).setRowCount(fila+1); // Creo nueva fila
 	    table.setValueAt(monto, fila, 0);
 	    table.setValueAt(descripcion, fila, 1);
-	    
-	    // Añadir entrada en Deque
-	    //miCuenta.realizarTransaccion(nuevaTransaccion);
 	}
 	
+	/**
+	 * Vacía el contenido de la tabla
+	 * @param tm TableModel referente a la tabla a limpiar
+	 */
 	private void limpiarTabla(DefaultTableModel tm) {
 		tm.setRowCount(0);
 	}
 	
+	/**
+	 * Deshabilita los elementos interactivos de la aplicación
+	 */
 	private void bloquearApp() {
 		rdbtnTodas.setEnabled(false);
 		rdbtnMsCostosa.setEnabled(false);
@@ -189,6 +204,9 @@ public class GUI extends JFrame{
 		btnNuevaTransaccin.setEnabled(false);
 	}
 	
+	/**
+	 * Crea una etiqueta con el texto "Mostrar"
+	 */
 	private void crearLabelMostrar() {
 		JLabel lblMostrar = new JLabel("Mostrar");
 		lblMostrar.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -199,6 +217,9 @@ public class GUI extends JFrame{
 		frame.getContentPane().add(lblMostrar, gbc_lblMostrar);
 	}
 	
+	/**
+	 * Crea una etiqueta con el texto "Historial de Transacciones"
+	 */
 	private void crearLabelHistorialDeTransacciones() {
 		JLabel lblHistorialDeTransacciones = new JLabel("Historial de Transacciones");
 		GridBagConstraints gbc_lblHistorialDeTransacciones = new GridBagConstraints();
@@ -208,6 +229,9 @@ public class GUI extends JFrame{
 		frame.getContentPane().add(lblHistorialDeTransacciones, gbc_lblHistorialDeTransacciones);
 	}
 	
+	/**
+	 * Crea el marco de la ventana
+	 */
 	private void crearFrame() {
 		frame = new JFrame();
 		frame.setTitle("Software de gestión de cuenta bancaria");
@@ -221,6 +245,9 @@ public class GUI extends JFrame{
 		frame.getContentPane().setLayout(gridBagLayout);
 	}
 	
+	/**
+	 * Crea el botón para ingresar nuevas transacciones a la tabla
+	 */
 	private void crearBtnNuevaTransaccion() {
 		JPanel panelBotonNew = new JPanel();
 		GridBagConstraints gbc_panelBotonNew = new GridBagConstraints();
@@ -239,6 +266,9 @@ public class GUI extends JFrame{
 		panelBotonNew.add(btnNuevaTransaccin);
 	}
 	
+	/**
+	 * Crea la etiqueta "Saldo" y muestra el saldo total de la cuenta
+	 */
 	private void crearSaldo() {
 		JPanel panelSaldo = new JPanel();
 		GridBagConstraints gbc_panelSaldo = new GridBagConstraints();
@@ -256,6 +286,9 @@ public class GUI extends JFrame{
 	 * Métodos oyentes
 	 */
 	
+	/**
+	 * Crea un oyente para el botón destinado a ingresar nuevas transacciones. 
+	 */
 	private void btnNuevaTransaccinListener() {
 		rdbtnTodasListener();
 		String montoInput = JOptionPane.showInputDialog("Monto de la operación: ");
@@ -283,11 +316,19 @@ public class GUI extends JFrame{
 			JOptionPane.showMessageDialog(null,"El campo 'monto' es obligatorio.","Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	 
+	
+	/**
+	 * Crea un oyente que actualiza el saldo de la cuenta a medida que 
+	 * se ingresan nuevas transacciones
+	 */
 	private void saldoListener() {
 		lblSaldo.setText("Saldo $ "+miCuenta.getSaldo());
 	}
 	
+	/**
+	 * Crea un oyente y performa las acciones tendientes a mostrar todas
+	 * las transacciones de la cuenta al activar el radio button "Todas"
+	 */
 	private void rdbtnTodasListener() {
 		limpiarTabla(tablaModel);
 		for (Transaccion t: miCuenta.transacciones()) {
@@ -295,6 +336,11 @@ public class GUI extends JFrame{
 		}
 	}
 	
+	/**
+	 * Crea un oyente y performa las acciones tendientes a mostrar la
+	 * transacción más histórica de la cuenta al activar el radio button
+	 * "Más histórica"
+	 */
 	private void rdbtnMsHistricaListener() {
 		limpiarTabla(tablaModel);
 		Transaccion t = miCuenta.transaccionMasHistorica();
@@ -302,6 +348,11 @@ public class GUI extends JFrame{
 			agregarFila(t.getMonto(),t.getDescripcion());
 	}
 	
+	/**
+	 * Crea un oyente y performa las acciones tendientes a mostrar la
+	 * transacción más reciente de la cuenta al activar el radio button
+	 * "Más reciente"
+	 */
 	private void rdbtnMsRecienteListener() {
 		limpiarTabla(tablaModel);
 		Transaccion t = miCuenta.transaccionMasReciente();
@@ -309,6 +360,11 @@ public class GUI extends JFrame{
 			agregarFila(t.getMonto(), t.getDescripcion());
 	}
 	
+	/**
+	 * Crea un oyente y performa las acciones tendientes a mostrar la
+	 * transacción más costosa de la cuenta al activar el radio button
+	 * "Más costosa"
+	 */
 	private void rdbtnMsCostosaListener() {
 		limpiarTabla(tablaModel);
 		Transaccion t = miCuenta.transaccionMasCostosa();
@@ -316,6 +372,11 @@ public class GUI extends JFrame{
 			agregarFila(t.getMonto(), t.getDescripcion());
 	}
 	
+	/**
+	 * Crea un oyente y performa las acciones tendientes a mostrar las
+	 * transacciones cuyo monto es igual al indicado por el usuario al
+	 * activar el radio button "Monto..."
+	 */
 	private void rdbtnNewRadioButtonListener() {
 		rdbtnTodasListener();
 		String montoInput = JOptionPane.showInputDialog("Monto a buscar: ");
