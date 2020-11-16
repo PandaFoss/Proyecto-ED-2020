@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 /**
  * Clase ElementIterator.
  * Modela un iterador de elementos de una lista.
- * @author Joaquin Garcia Diotto
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
  *
  * @param <E> Tipo de dato de la lista a iterar.
  */

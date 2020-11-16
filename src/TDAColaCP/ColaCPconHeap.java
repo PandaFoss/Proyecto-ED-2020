@@ -2,6 +2,13 @@ package TDAColaCP;
 
 import java.util.Comparator;
 
+/**
+ * Modela la interfaz PriorityQueue mediante la estructura de datos Cola Con Prioridad con Heap.
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ *
+ * @param <K> Tipo de dato de las claves de la Cola.
+ * @param <V> Tipo de dato de los valores de la Cola.
+ */
 public class ColaCPconHeap<K extends Comparable<K>,V> implements PriorityQueue<K,V>{
 
 	protected Comparator<K> comp;

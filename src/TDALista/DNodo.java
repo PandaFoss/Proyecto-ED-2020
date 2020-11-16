@@ -2,7 +2,7 @@ package TDALista;
 
 /**
  * Modela la interfaz Position mediante Nodos doblemente enlazados.
- * @author Joaquin
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
  *
  * @param <E> Parametro generico utilizado por la clase.
  */

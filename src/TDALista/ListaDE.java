@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * Clase ListaDE.
  * Modela la interfaz PositionList mediante la estructura de datos Lista Doblemente Enlazada.
- * @author Joaquin
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
  *
  * @param <E> Tipo de dato a almacenar en la lista.
  */
