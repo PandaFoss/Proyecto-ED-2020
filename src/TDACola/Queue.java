@@ -1,15 +1,11 @@
 package TDACola;
-
 /**
- * Interface Queue - Estructura de Datos (DCIC-UNS).
- * Define los datos y operaciones aplicables sobre una cola.
- * @author Estructuras de Datos, DCIC-UNS.
- * @version 1.0 - María Luján Ganuza (2013-2018)
- * @version 2.0 - Federico Joaquín (2019-2020) 
- * @param <E> Tipo de dato a almacenar en la cola.
+ * Interface Queue
+ * @author C�tedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computaci�n, UNS.
  */
-public interface Queue <E>{
-	
+
+public interface Queue <E>
+{
 	/**
 	 * Devuelve la cantidad de elementos en la cola.
 	 * @return Cantidad de elementos en la cola.
@@ -17,15 +13,15 @@ public interface Queue <E>{
 	public int size();
 	
 	/**
-	 * Consulta si la cola está vacía.
-	 * @return Verdadero si la cola está vacía, falso en caso contrario.
+	 * Consulta si la cola est� vac�a.
+	 * @return Verdadero si la cola est� vac�a, falso en caso contrario.
 	 */
 	public boolean isEmpty();
 	
 	/**
 	 * Inspecciona el elemento que se encuentra en el frente de la cola.
 	 * @return Elemento que se encuentra en el frente de la cola.
-	 * @throws EmptyQueueException si la cola está vacía.
+	 * @throws EmptyQueueException si la cola est� vac�a.
 	 */
 	public E front() throws EmptyQueueException;
 	
@@ -38,7 +34,7 @@ public interface Queue <E>{
 	/**
 	 * Remueve el elemento en el frente de la cola.
 	 * @return Elemento removido.
-	 * @throws EmptyQueueException si la cola está vacía.
+	 * @throws EmptyQueueException si la cola est� vac�a.
 	 */
 	public E dequeue() throws EmptyQueueException;
 }

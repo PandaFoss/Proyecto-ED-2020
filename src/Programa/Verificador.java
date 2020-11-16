@@ -7,7 +7,7 @@ import TDAPila.EmptyStackException;
 import TDAPila.PilaConEnlaces;
 import TDAPila.Stack;
 
-public class Programa {
+public class Verificador {
 	/**
 	 * Evalúa una contraseña para determinar si sigue el patrón AXA'A', donde A es el apellido
 	 * del usuario, A' es el apellido invertido y X el caracter 'x'.

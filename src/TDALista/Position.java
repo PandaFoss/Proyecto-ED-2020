@@ -2,7 +2,7 @@ package TDALista;
 
 /**
  * Interface Position.
- * @author Joaquin Garcia Diotto
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
  * 
  * @param <E> Elemento a ser almacenado por la posicion.
  */

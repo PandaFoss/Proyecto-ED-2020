@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Programa.CuentaBancaria;
 import Programa.Transaccion;
-import Programa.Programa;
+import Programa.Verificador;
 
 /**
  * Implementa la clase GUI la cual modela la interfaz gráfica
@@ -39,7 +39,7 @@ public class GUI extends JFrame{
 		initialize();
 		frame.setVisible(true);
 		String claveDeAcceso = JOptionPane.showInputDialog("Clave de acceso:");
-		if(claveDeAcceso==null || !Programa.check_password(claveDeAcceso)){
+		if(claveDeAcceso==null || !Verificador.check_password(claveDeAcceso)){
 			JOptionPane.showMessageDialog(null,"La clave de acceso tiene un formato incorrecto.","Error", JOptionPane.ERROR_MESSAGE);
 			bloquearApp();
 		}

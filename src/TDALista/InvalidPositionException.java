@@ -2,7 +2,7 @@ package TDALista;
 
 /**
  * Modela la excepcion en caso de que la posicion utilizada no sea valida.
- * @author Joaquin Garcia Diotto
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
  *
  */
 @SuppressWarnings("serial")

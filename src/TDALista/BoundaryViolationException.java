@@ -2,7 +2,7 @@ package TDALista;
 
 /**
  * Modela la excepcion cuando se intentan sobrepasar los limites de la lista.
- * @author Joaquin Garcia Diotto
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
  *
  */
 @SuppressWarnings("serial")

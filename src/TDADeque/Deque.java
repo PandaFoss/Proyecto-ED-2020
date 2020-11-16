@@ -11,10 +11,19 @@ import TDALista.ListaDE;
 import TDALista.Position;
 import TDALista.PositionList;
 
+
+/**
+ * Modela la interfaz Deque mediante una lista
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ *
+ * @param <E> Tipo de dato a almacenar en la Deque
+ */
 public class Deque<E> implements java.util.Deque<E> {
+	private PositionList<E> lista;
 	
-	PositionList<E> lista;
-	
+	/**
+	 * Crea una Deque vacia.
+	 */
 	public Deque() {
 		lista = new ListaDE<E>();
 	}
@@ -41,7 +50,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	}
 	
 	@Override
-	public boolean containsAll(Collection<?> c) { //Metodos turbios
+	public boolean containsAll(Collection<?> c) {
 		boolean tiene = true;
 		Iterator<?> it = c.iterator();
 		while(tiene && it.hasNext())
@@ -50,7 +59,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	}
 
 	@Override
-	public boolean removeAll(Collection<?> c) { //Supongo que hay que recorrer toda la coleccion igualmente, pero despues avisar si no se eliminaron todos.
+	public boolean removeAll(Collection<?> c) {
 		boolean eliminados = true;
 		for(Object o : c)
 			if(!remove(o))
@@ -59,7 +68,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	}
 	
 	@Override
-	public boolean retainAll(Collection<?> c) { //El return seria asi, no? Avisar si se elimino algun elemento, porque sino siempre seria true si la coleccion retiene todos los elementos de la lista al finalizar el metodo.
+	public boolean retainAll(Collection<?> c) {
 		int size = lista.size();
 		for(Position<E> posicion : lista.positions())
 			if(!c.contains(posicion.element()))
@@ -97,7 +106,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	}
 
 	@Override
-	public E removeFirst() throws NoSuchElementException { //Agregue esta excepcion ya que lo indica la documentacion del metodo, es correcto de todas formas?
+	public E removeFirst() throws NoSuchElementException {
 		if(lista.isEmpty()) throw new NoSuchElementException("removeFirst(); Deque vacia");
 		E elemento = null;
 		try {
@@ -241,7 +250,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	}
 
 	@Override
-	public boolean addAll(Collection<? extends E> c) { //Otro metodo turbio, supongo que se hace asi.
+	public boolean addAll(Collection<? extends E> c) {
 		for(E elemento : c) 
 			lista.addLast(elemento);
 		return true;

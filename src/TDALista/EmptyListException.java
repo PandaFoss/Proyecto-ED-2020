@@ -1,9 +1,8 @@
 package TDALista;
 
 /**
- * Clase EmptyListException.
- * Maneja la excepcion "EmptyListException".
- * @author Joaquin Garcia Diotto
+ * Modela la excepcion cuando se intenta operar sobre una lista vacia.
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
  *
  */
 public class EmptyListException extends Exception{
@@ -11,8 +10,8 @@ public class EmptyListException extends Exception{
 	
 	
 	/**
-	 * Crea la excepcion en caso de que la lista sea vacia.
-	 * @param m Mensaje ingresado el cual sera mostrado en caso de producirse la excepcion.
+	 * Inicializa la excepcion indicando el origen del error.
+	 * @param m Especifica informacion adicional a cerca de la excepcion.
 	 */
 	public EmptyListException(String m) {
 		super(m);

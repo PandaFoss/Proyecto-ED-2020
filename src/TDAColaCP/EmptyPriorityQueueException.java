@@ -2,7 +2,7 @@ package TDAColaCP;
 
 /**
  * Modela la excepcion en caso de que se intente operar sobre una Cola Con Prioridad vacia.
- * @author Joaquin Garcia Diotto
+ * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
  *
  */
 public class EmptyPriorityQueueException extends Exception{
