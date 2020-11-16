@@ -1,0 +1,28 @@
+\documentclass[11pt]{article}
+
+    \title{\textbf{Minutas del proyecto}}
+    \date{}
+
+    \addtolength{\topmargin}{-3cm}
+    \addtolength{\textheight}{3cm}
+    \usepackage{fancyhdr}
+    \usepackage{geometry}
+    \geometry{
+        a4paper,
+        total={170mm,257mm},
+        left=20mm,
+        top=20mm,
+    }
+	\usepackage{graphicx}
+\begin{document}
+
+% Portada
+\maketitle
+\thispagestyle{empty}
+% Minutas en ítems
+\begin{enumerate}
+	\item Si bien la clave de acceso pretende funcionar mediante el formato \(AXA'A'\), donde \(A\) es el apellido del usuario, \(X\) es la letra \("X"\) y \(A'\) es el apellido pero invertido, el software implementado no corrobora que \(A\) sea efectivamente un apellido. Aún así, la eficacia es la misma.
+	\item Surgieron dudas con respecto a la implementacion de algunos metodos del TDA Deque. De todas formas no son métodos relevantes para el funcionamiento del programa del proyecto.
+	\item Utilizamos una Cola con Prioridad con Heap ya que los unicos metodos que usamos fueron \texttt{insert()} y \texttt{min()}, y este tipo de implementacion nos permite obtener la mayor eficiencia en ambos, tomando \texttt{insert()} con \(O(log_2(n))\) y \texttt{min()} con \(O(log_2(n))\).
+\end{enumerate}
+\end{document}
