@@ -1,3 +1,6 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Pila
+ */
 package TDAPila;
 
 /**

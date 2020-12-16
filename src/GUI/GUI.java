@@ -1,3 +1,6 @@
+/**
+ * Provee clases relativas a la creación de la interfaz gráfica
+ */
 package GUI;
 
 import java.awt.*;
@@ -13,7 +16,7 @@ import Programa.Verificador;
 
 /**
  * Implementa la clase GUI la cual modela la interfaz gráfica
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  */
 public class GUI extends JFrame{
 

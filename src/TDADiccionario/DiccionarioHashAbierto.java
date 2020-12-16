@@ -1,11 +1,15 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Diccionario con Hash Abierto
+ */
 package TDADiccionario;
+
 import java.util.Iterator;
 
 import TDALista.*;
 
 /**
  * Implementa la interfaz Dictionary y la modela mediante la estructura de datos Hash Abierto.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  * @param <K> Tipo de dato de las claves mantenidas por el diccionario.
  * @param <V> Tipo de dato de los valores contenidos en el diccionario.

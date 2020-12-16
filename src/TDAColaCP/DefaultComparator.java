@@ -1,10 +1,13 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Cola con Prioridad
+ */
 package TDAColaCP;
 
 import java.util.Comparator;
 
 /**
  * Modela la interfaz Comparator mediante un Comparador por Defecto.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  * @param <K> Tipo de dato a ser comparado.
  */

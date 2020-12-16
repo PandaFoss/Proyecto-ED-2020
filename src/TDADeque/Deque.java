@@ -1,3 +1,6 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Deque
+ */
 package TDADeque;
 
 import java.util.Collection;
@@ -14,7 +17,7 @@ import TDALista.PositionList;
 
 /**
  * Modela la interfaz Deque mediante una lista
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  * @param <E> Tipo de dato a almacenar en la Deque
  */

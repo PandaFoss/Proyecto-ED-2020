@@ -1,8 +1,11 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Cola con Prioridad
+ */
 package TDAColaCP;
 
 /**
  * Modela la interfaz Entry a mediante Entradas.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  * @param <K> Tipo de dato utilizado por las claves de la clase.
  * @param <V> Tipo de dato utilizado por los valores de la clase.

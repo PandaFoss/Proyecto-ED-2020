@@ -1,3 +1,6 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Lista
+ */
 package TDALista;
 
 import java.util.Iterator;
@@ -5,7 +8,7 @@ import java.util.Iterator;
 /**
  * Clase ListaDE.
  * Modela la interfaz PositionList mediante la estructura de datos Lista Doblemente Enlazada.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  * @param <E> Tipo de dato a almacenar en la lista.
  */

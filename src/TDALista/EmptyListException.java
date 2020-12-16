@@ -1,8 +1,11 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Lista
+ */
 package TDALista;
 
 /**
  * Modela la excepcion cuando se intenta operar sobre una lista vacia.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  */
 public class EmptyListException extends Exception{

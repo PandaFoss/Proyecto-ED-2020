@@ -1,3 +1,6 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Cola con Prioridad
+ */
 package TDAColaCP;
 
 /**

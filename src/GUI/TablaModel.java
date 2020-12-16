@@ -1,3 +1,6 @@
+/**
+ * Provee clases relativas a la creación de la interfaz gráfica
+ */
 package GUI;
 
 import javax.swing.table.DefaultTableModel;
@@ -5,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Implementa la interfaz DefaultTableModel y la modela siguiendo la estructura
  * de monto-descripción
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  */
 final class TablaModel extends DefaultTableModel{
 	private Class[] types;

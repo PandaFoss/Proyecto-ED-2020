@@ -1,8 +1,11 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Pila
+ */
 package TDAPila;
 
 /**
  * Implementa la interfaz Stack mediante la estructura de datos Pila Con Enlaces.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  * @param <E> Tipo del elemento a almacenar en la Pila
  */

@@ -1,8 +1,11 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Lista
+ */
 package TDALista;
 
 /**
  * Modela la interfaz Position mediante Nodos doblemente enlazados.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  * @param <E> Parametro generico utilizado por la clase.
  */

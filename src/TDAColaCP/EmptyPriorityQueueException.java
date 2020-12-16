@@ -1,8 +1,11 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Cola con Prioridad
+ */
 package TDAColaCP;
 
 /**
  * Modela la excepcion en caso de que se intente operar sobre una Cola Con Prioridad vacia.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  */
 public class EmptyPriorityQueueException extends Exception{

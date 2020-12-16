@@ -1,10 +1,13 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Cola
+ */
 package TDACola;
 
 import TDACola.Queue;
 
 /**
  * Implementa la interfaz Queue y la modela mediante la estructura de datos Cola con arreglo circular.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  * @param <E> Tipo de dato a almacenar en la Cola.
  */

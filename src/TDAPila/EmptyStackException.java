@@ -1,8 +1,11 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Pila
+ */
 package TDAPila;
 
 /**
  * Modela la excepcion cuando se realice una accion invalida sobre una pila vacia.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  * 
  */
 @SuppressWarnings("serial")

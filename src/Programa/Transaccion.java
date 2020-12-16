@@ -1,8 +1,11 @@
+/**
+ * Provee clases relativas a la creación de la interfaz gráfica
+ */
 package Programa;
 
 /**
  * Modela una Transaccion
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  */
 public class Transaccion {

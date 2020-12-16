@@ -1,8 +1,11 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Lista
+ */
 package TDALista;
 
 /**
  * Modela la excepcion en caso de que la posicion utilizada no sea valida.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  */
 @SuppressWarnings("serial")

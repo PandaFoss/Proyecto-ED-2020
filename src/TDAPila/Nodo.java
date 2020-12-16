@@ -1,8 +1,11 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Pila
+ */
 package TDAPila;
 
 /**
  * Modela Nodos simplemente enlazados.
- * @author Joaquin Garcia Diotto
+ * @author Skorrom
  * 
  * @param <E> Tipo de elemento a almacenar en el Nodo.
  */

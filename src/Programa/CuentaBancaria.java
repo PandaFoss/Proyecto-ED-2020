@@ -1,3 +1,6 @@
+/**
+ * Provee clases tendientes a la implementación de una Cuenta Bancaria
+ */
 package Programa;
 
 import java.math.BigDecimal;
@@ -17,7 +20,7 @@ import TDALista.PositionList;
 
 /**
  * Modela la clase CuentaBancaria 
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  */
 public class CuentaBancaria {
 	protected float saldo;
@@ -69,6 +72,7 @@ public class CuentaBancaria {
 	
 	/**
 	 * Método que permite obtener las transacciones con igual monto.
+	 * @param monto Monto a buscar en el iterable de transacciones.
 	 * @return Transacciones con igual monto.
 	 */
 	public Iterable<Transaccion> transaccionesIgualMonto(Float monto) {

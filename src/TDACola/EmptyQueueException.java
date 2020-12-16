@@ -1,8 +1,11 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Cola
+ */
 package TDACola;
 
 /**
  * Modela la excepcion en caso de que se realice una accion invalida sobre una Cola vacia.
- * @author Joaquin Garcia Diotto - Maximiliano Ferrer Gregori
+ * @author Skorrom - Max Ferrer [Panda Foss]
  *
  */
 @SuppressWarnings("serial")

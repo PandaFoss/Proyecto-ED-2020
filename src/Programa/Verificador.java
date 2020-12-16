@@ -1,3 +1,6 @@
+/**
+ * Provee clases relativas a la creación de la interfaz gráfica
+ */
 package Programa;
 
 import TDACola.Cola_con_arreglo_circular;
@@ -7,6 +10,11 @@ import TDAPila.EmptyStackException;
 import TDAPila.PilaConEnlaces;
 import TDAPila.Stack;
 
+/**
+ * Modela la clase Verificador
+ * @author Skorrom - Max Ferrer [Panda Foss]
+ *
+ */
 public class Verificador {
 	/**
 	 * Evalúa una contraseña para determinar si sigue el patrón AXA'A', donde A es el apellido
