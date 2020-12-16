@@ -1,6 +1,9 @@
 package TDADiccionario;
 
-
+/**
+ * Interface Dictionary
+ * @author Cátedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computación, UNS.
+ */
 public interface Dictionary<K,V>
 {
 	/**

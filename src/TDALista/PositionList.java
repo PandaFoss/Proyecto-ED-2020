@@ -1,3 +1,6 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Lista
+ */
 package TDALista;
 
 import java.util.Iterator;
@@ -6,7 +9,6 @@ import java.util.Iterator;
  * Interface PositionList
  * @author C�tedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computaci�n, UNS.
  */
-
 public interface PositionList<E> extends Iterable<E>
 {
 	/**

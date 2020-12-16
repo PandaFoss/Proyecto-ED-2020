@@ -1,9 +1,11 @@
+/**
+ * Provee clases e interfaces tendientes a implementar el TDA Cola
+ */
 package TDACola;
 /**
  * Interface Queue
  * @author C�tedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computaci�n, UNS.
  */
-
 public interface Queue <E>
 {
 	/**
